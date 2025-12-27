@@ -7,6 +7,7 @@ import { useIntl } from 'umi';
 import styles from './index.less';
 import { useState } from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { login } from '@/services/demo/user';
 // public目录下的文件直接通过根路径访问，无需导入
 
 const LoginMessage: React.FC<{
@@ -26,8 +27,9 @@ const HomePage: React.FC = () => {
   const { name } = useModel('global');
   const [type, setType] = useState<string>('account');
   const intl = useIntl();
-  const handleSubmit = async (values) => {
+  const handleSubmit = async (values: Record<string, any>) => {
     console.log(values);
+    await login(values);
   };
   return (
     <PageContainer ghost>
