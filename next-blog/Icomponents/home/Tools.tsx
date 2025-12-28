@@ -13,7 +13,6 @@ export const Tools: FC<{ back?: boolean; className?: string }> = ({
     >
       {back && <BackButton />}
       <PostCreateButton />
-      pnpm
     </div>
   );
 };
