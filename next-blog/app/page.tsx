@@ -6,6 +6,7 @@ import { IPaginateQueryProps } from "@/Icomponents/paginate/types";
 import { isNil } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
+import { Calendar } from "lucide-react";
 
 async function Page({
   searchParams,
@@ -42,7 +43,10 @@ async function Page({
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             style={{ "--bg-img": `url(${item.thumb})` } as any}
           >
-            <Link className="h-36 md:h-48 lg:h-72 " href={`/posts/${item.id}`}>
+            <Link
+              className=" relative block h-36 md:h-48 lg:h-72  "
+              href={`/posts/${item.id}`}
+            >
               <Image
                 src={item.thumb}
                 alt={item.title}
@@ -53,6 +57,32 @@ async function Page({
                 className="rounded-tl-md rounded-tr-md opacity-60 "
               />
             </Link>
+            <div className="rounded-bl-md rounded-br-md w-full bg-zinc-100/80 dark:bg-zinc-800/50   px-5 h-20">
+              <div className="py-3">
+                <Link
+                  href={`/posts/${item.id}`}
+                  className="w-full block overflow-hidden text-foreground"
+                >
+                  <h2 className="truncate animate-decoration animate-decoration-lg text-lg font-bold">
+                    {item.title}
+                  </h2>
+                </Link>
+                <div className="">
+                  {isNil(item.summary)
+                    ? item.body.substring(0, 99)
+                    : item.summary}
+                </div>
+                <div className={$styles.footer}>
+                  <div className={$styles.meta}>
+                    <span>
+                      <Calendar />
+                    </span>
+                    <time className="ellips">2024年8月10日</time>
+                  </div>
+                  <PostActions id={item.id} />
+                </div>
+              </div>
+            </div>
           </div>
         ))}
       </div>
