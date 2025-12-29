@@ -4,6 +4,8 @@ import { queryPostPaginate } from "./actions/post";
 import { redirect } from "next/navigation";
 import { IPaginateQueryProps } from "@/Icomponents/paginate/types";
 import { isNil } from "@/lib/utils";
+import Link from "next/link";
+import Image from "next/image";
 
 async function Page({
   searchParams,
@@ -27,8 +29,32 @@ async function Page({
   return (
     <div className="flex flex-auto flex-col mt-20 items-center">
       <Tools className="max-w-[90%] md:max-w-[80%] mb-5" />
-      <div className={clsx("w-full", "max-w-[90%] md:max-w-[80%] mb-5")}>
-        {/* Add your content here */}
+      <div
+        className={clsx(
+          "w-full",
+          "max-w-[90%] md:max-w-[80%] lg:max-w-[70%] xl:max-w-[60%] flex-auto mb-5"
+        )}
+      >
+        {items.map((item) => (
+          <div
+            key={item.id}
+            className="post-item flex flex-col rounded-md mb-5 backdrop-blur-md  "
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            style={{ "--bg-img": `url(${item.thumb})` } as any}
+          >
+            <Link className="h-36 md:h-48 lg:h-72 " href={`/posts/${item.id}`}>
+              <Image
+                src={item.thumb}
+                alt={item.title}
+                fill
+                priority
+                sizes="100%"
+                unoptimized
+                className="rounded-tl-md rounded-tr-md opacity-60 "
+              />
+            </Link>
+          </div>
+        ))}
       </div>
     </div>
   );

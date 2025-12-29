@@ -123,3 +123,17 @@
     @apply bg-background text-foreground;
   }
 }
+@layer components {
+  .post-item::before {
+    content: "";
+
+    @apply opacity-0 rounded-md  overflow-hidden duration-300
+    absolute top-0 left-0 w-full h-full bg-[image:var(--bg-img)]
+    z-[-1] bg-center bg-cover;
+    filter: blur(30px) opacity(70%) brightness(120%);
+  }
+  /* 可选：加 hover 效果 */
+  .post-item:hover::before {
+    @apply opacity-100;
+  }
+}
