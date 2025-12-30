@@ -7,6 +7,9 @@ import { isNil } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
 import { Calendar } from "lucide-react";
+import { PostDeleteButton } from "@/Icomponents/post/PostDeleteButton";
+import { PageModal } from "@/Icomponents/modal/PageModal";
+import { PostActions } from "@/Icomponents/post/list";
 
 async function Page({
   searchParams,
@@ -57,7 +60,7 @@ async function Page({
                 className="rounded-tl-md rounded-tr-md opacity-60 "
               />
             </Link>
-            <div className="rounded-bl-md rounded-br-md w-full bg-zinc-100/80 dark:bg-zinc-800/50   px-5 h-20">
+            <div className="rounded-bl-md rounded-br-md w-full bg-zinc-100/80 dark:bg-zinc-800/50   px-5 ">
               <div className="py-3">
                 <Link
                   href={`/posts/${item.id}`}
@@ -67,17 +70,17 @@ async function Page({
                     {item.title}
                   </h2>
                 </Link>
-                <div className="">
+                <div className="py-3 text-muted-foreground">
                   {isNil(item.summary)
                     ? item.body.substring(0, 99)
                     : item.summary}
                 </div>
-                <div className={$styles.footer}>
-                  <div className={$styles.meta}>
+                <div className="py-3 flex justify-between text-muted-foreground">
+                  <div className="flex items-center">
                     <span>
                       <Calendar />
                     </span>
-                    <time className="ellips">2024年8月10日</time>
+                    <time className="truncate ml-2">2024年8月10日</time>
                   </div>
                   <PostActions id={item.id} />
                 </div>

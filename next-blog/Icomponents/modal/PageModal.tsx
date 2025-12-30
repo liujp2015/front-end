@@ -1,9 +1,23 @@
 "use client";
-import { Dialog } from "@/components/ui/dialog";
-import { useRouter } from "next/navigation";
-import { FC, PropsWithChildren, useCallback } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
-export const PageModal: FC<PropsWithChildren> = () => {
+import { useRouter } from "next/navigation";
+import { FC, useCallback } from "react";
+import { PageModalProps } from "./types";
+import clsx from "clsx";
+
+export const PageModal: FC<PageModalProps> = ({
+  title,
+  match,
+  className,
+  children,
+}) => {
   const router = useRouter();
 
   // eslint-disable-next-line react-hooks/preserve-manual-memoization
@@ -11,7 +25,15 @@ export const PageModal: FC<PropsWithChildren> = () => {
 
   return (
     <Dialog open onOpenChange={close}>
-      这个是弹窗
+      <DialogContent className={clsx("sm:max-w-[80%]", className)}>
+        <DialogHeader>
+          <DialogTitle>{title}</DialogTitle>
+          <DialogDescription />
+          <div className="px-3 w-full max-h-[80vh] overflow-y-auto">
+            {children}
+          </div>
+        </DialogHeader>
+      </DialogContent>
     </Dialog>
   );
 };

@@ -4,7 +4,9 @@ import React from "react";
 const Page = () => {
   return (
     <div>
-      <PageModal></PageModal>
+      <PageModal title="编辑文章" className="min-w-full lg:min-w-[60%]">
+        编辑
+      </PageModal>
     </div>
   );
 };
