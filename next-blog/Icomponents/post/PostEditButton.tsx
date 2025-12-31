@@ -6,7 +6,7 @@ import React, { FC } from "react";
 export const PostEditButton: FC<{ id: string }> = ({ id }) => {
   return (
     <CNButton asChild className="mr-3">
-      <Link href={`/test/${id}`}>
+      <Link href={`/posts/${id}`}>
         <UserPen />
         编辑
       </Link>
