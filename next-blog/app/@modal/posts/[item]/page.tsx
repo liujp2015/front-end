@@ -10,7 +10,7 @@ const Page: FC<{ params: { item: string } }> = async ({ params }) => {
     <div>
       <PageModal title="编辑文章" className="min-w-full lg:min-w-[60%]">
         编辑
-        <Details summary="点击"></Details>
+        {/* <Details summary="点击"></Details> */}
         <PostEditForm id={item}></PostEditForm>
       </PageModal>
     </div>
