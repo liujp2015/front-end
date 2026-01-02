@@ -20,7 +20,6 @@ async function Page({
   // 当没有传入当前页或当前页小于1时，设置为第1页
   const page =
     isNil(currentPage) || Number(currentPage) < 1 ? 1 : Number(currentPage);
-
   const { items, meta } = await queryPostPaginate({
     page: Number(page),
     limit: Number(limit),
