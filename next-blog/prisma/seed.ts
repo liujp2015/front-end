@@ -13,7 +13,9 @@ const prisma = new PrismaClient({
 });
 
 export async function main() {
-  await prisma.post.deleteMany();
+  // await prisma.post.deleteMany();
+  await prisma.$executeRaw`TRUNCATE TABLE "posts" RESTART IDENTITY CASCADE`;
+
   for (let index = 0; index < 22; index++) {
     await prisma.post.create({
       select: { id: true },

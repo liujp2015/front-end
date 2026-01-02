@@ -1,6 +1,6 @@
 import { Tools } from "@/Icomponents/home/Tools";
 import clsx from "clsx";
-import { queryPostPaginate } from "./actions/post";
+import { queryPostPaginate, queryPostPaginateByPrisma } from "./actions/post";
 import { redirect } from "next/navigation";
 import { IPaginateQueryProps } from "@/Icomponents/paginate/types";
 import { isNil } from "@/lib/utils";
@@ -20,7 +20,7 @@ async function Page({
   // 当没有传入当前页或当前页小于1时，设置为第1页
   const page =
     isNil(currentPage) || Number(currentPage) < 1 ? 1 : Number(currentPage);
-  const { items, meta } = await queryPostPaginate({
+  const { items, meta } = await queryPostPaginateByPrisma({
     page: Number(page),
     limit: Number(limit),
   });
@@ -28,7 +28,8 @@ async function Page({
   if (meta.totalPages && meta.totalPages > 0 && page > meta.totalPages) {
     return redirect("/");
   }
-  console.log(items.length);
+  console.log("items", items);
+  console.log("meta", meta);
   return (
     <div className="flex flex-auto flex-col mt-20 items-center">
       <Tools className="max-w-[90%] md:max-w-[80%] mb-5" />
