@@ -10,6 +10,7 @@ import { Calendar } from "lucide-react";
 import { PostDeleteButton } from "@/Icomponents/post/PostDeleteButton";
 import { PageModal } from "@/Icomponents/modal/PageModal";
 import { PostActions } from "@/Icomponents/post/list";
+import Paginate from "@/Icomponents/paginate/paginate";
 
 async function Page({
   searchParams,
@@ -31,7 +32,7 @@ async function Page({
   console.log("items", items);
   console.log("meta", meta);
   return (
-    <div className="flex flex-auto flex-col mt-20 items-center">
+    <div className="flex flex-auto flex-col mt-20 pt-20 items-center">
       <Tools className="max-w-[90%] md:max-w-[80%] mb-5" />
       <div
         className={clsx(
@@ -89,6 +90,7 @@ async function Page({
           </div>
         ))}
       </div>
+      <Paginate />
     </div>
   );
 }

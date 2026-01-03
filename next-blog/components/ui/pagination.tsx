@@ -39,6 +39,8 @@ function PaginationItem({ ...props }: React.ComponentProps<"li">) {
 
 type PaginationLinkProps = {
   isActive?: boolean;
+  disabled?: boolean;
+  text?: string;
 } & Pick<React.ComponentProps<typeof Button>, "size"> &
   React.ComponentProps<"a">;
 
@@ -52,14 +54,17 @@ function PaginationLink({
     <a
       aria-current={isActive ? "page" : undefined}
       data-slot="pagination-link"
+      aria-disabled={props.disabled}
       data-active={isActive}
       className={cn(
         buttonVariants({
           variant: isActive ? "outline" : "ghost",
           size,
         }),
+        cn({ "pointer-events-none opacity-50": props.disabled }),
         className
       )}
+      href={props.href}
       {...props}
     />
   );
@@ -67,6 +72,7 @@ function PaginationLink({
 
 function PaginationPrevious({
   className,
+  text,
   ...props
 }: React.ComponentProps<typeof PaginationLink>) {
   return (
@@ -77,13 +83,14 @@ function PaginationPrevious({
       {...props}
     >
       <ChevronLeftIcon />
-      <span className="hidden sm:block">Previous</span>
+      <span className="hidden sm:block">{text ?? "Previous"}</span>
     </PaginationLink>
   );
 }
 
 function PaginationNext({
   className,
+  text,
   ...props
 }: React.ComponentProps<typeof PaginationLink>) {
   return (
@@ -93,7 +100,7 @@ function PaginationNext({
       className={cn("gap-1 px-2.5 sm:pr-2.5", className)}
       {...props}
     >
-      <span className="hidden sm:block">Next</span>
+      <span className="hidden sm:block">{text ?? "Next"}</span>
       <ChevronRightIcon />
     </PaginationLink>
   );
@@ -101,8 +108,9 @@ function PaginationNext({
 
 function PaginationEllipsis({
   className,
+  text,
   ...props
-}: React.ComponentProps<"span">) {
+}: React.ComponentProps<"span"> & { text?: string }) {
   return (
     <span
       aria-hidden
@@ -111,7 +119,7 @@ function PaginationEllipsis({
       {...props}
     >
       <MoreHorizontalIcon className="size-4" />
-      <span className="sr-only">More pages</span>
+      <span className="sr-only">{text ?? "More pages"}</span>
     </span>
   );
 }
