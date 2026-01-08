@@ -10,8 +10,8 @@ export default function HeaderLogo() {
           src="/next.svg"
           alt="logo"
           sizes="100%"
-          width={1000}
-          height={500}
+          width={200}
+          height={200}
           style={{ width: "100%", height: "100%" }}
         ></Image>
       </Link>
