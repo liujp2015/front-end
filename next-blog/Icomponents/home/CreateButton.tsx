@@ -14,16 +14,24 @@ const Button: FC = () => {
   }, [searchParams]);
 
   return (
-    <CNButton
-      asChild
-      className="ml-auto justify-end rounded-sm"
-      variant="outline"
-    >
-      <Link href={`/posts/create${getUrlQuery}`}>
-        <Plus className="mr-2 h-4 w-4" />
-        创建
-      </Link>
-    </CNButton>
+    <>
+      <CNButton variant="outline" asChild>
+        <Link href={`/posts/create${getUrlQuery}`}>
+          <Plus className="mr-2 h-4 w-4" />
+          创建
+        </Link>
+      </CNButton>
+      {/* <CNButton
+        asChild
+        className="ml-auto justify-end rounded-sm"
+        variant="outline"
+      >
+        <Link href={`/posts/create${getUrlQuery}`}>
+          <Plus className="mr-2 h-4 w-4" />
+          创建
+        </Link>
+      </CNButton> */}
+    </>
   );
 };
 const PostCreateButton = Button;
